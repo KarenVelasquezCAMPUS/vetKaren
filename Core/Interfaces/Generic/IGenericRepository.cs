@@ -1,8 +1,8 @@
 using System.Linq.Expressions;
 using Core.Entities;
 
-namespace Core.Interfaces;
-public interface IGeneric<T> where T : BaseEntity
+namespace Core.Interfaces.Generic;
+public interface IGenericRespository<T> where T : BaseEntity
 {
     Task<T> GetByIdAsync(int id);
     Task<IEnumerable<T>> GetAllAsync();
