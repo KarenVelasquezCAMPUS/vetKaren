@@ -1,5 +1,3 @@
-using System.Reflection.Emit;
-
 namespace Core.Entities;
 public class Medicine : BaseEntity
 {

@@ -1,7 +1,7 @@
 namespace Core.Entities;
-public class MedicalTreatments
+public class MedicalTreatments : BaseEntity
 {
-    public int QuotesId { get; set; } //HasPk
+    public int QuotesId { get; set; } 
     public Quotes Quotes { get; set; }
     public int MedicineId { get; set; }
     public Medicine Medicine { get; set; }
