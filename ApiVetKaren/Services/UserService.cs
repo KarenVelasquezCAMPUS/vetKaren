@@ -3,7 +3,9 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using ApiVetKaren.Dtos;
+using ApiVetKaren.Helpers;
 using Core.Entities;
+using Core.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -40,12 +42,12 @@ public class UserService : IUserService
         if (userExiste == null)
         {
             var rolPredeterminado = _unitOfWork.Roles
-                .Find(u => u.Name == Autorizacion.rol_predeterminado.ToString())
+                .Find(u => u.Name == Authorization.rol_predeterminado.ToString())
                 .First();
             try
             {
                 user.Roles.Add(rolPredeterminado);
-                _unitOfWork.users.Add(user);
+                _unitOfWork.Users.Add(user);
                 await _unitOfWork.SaveAsync();
     
                 return $"El user  {registerDto.UserName} ha sido registrado exitosamente";
@@ -100,7 +102,7 @@ public class UserService : IUserService
                 datosUserDto.RefreshToken = refreshToken.Token;
                 datosUserDto.RefreshTokenExpiration = refreshToken.Expires;
                 user.RefreshTokens.Add(refreshToken);
-                _unitOfWork.users.Update(user);
+                _unitOfWork.Users.Update(user);
                 await _unitOfWork.SaveAsync();
             }
             return datosUserDto;
@@ -113,7 +115,7 @@ public class UserService : IUserService
     // Añadir Rol
     public async Task<string> AddRolAsync(AddRolDto model)
     {
-        var user = await _unitOfWork.users
+        var user = await _unitOfWork.Users
             .GetByUserNameAsync(model.UserName);
         if (user == null)
         {
@@ -123,7 +125,7 @@ public class UserService : IUserService
         if (resultado == PasswordVerificationResult.Success)
         {
             var rolExiste = _unitOfWork.Roles
-                .Find(u => u.Nombre.ToLower() == model.Role.ToLower())
+                .Find(u => u.Name.ToLower() == model.Role.ToLower())
                 .FirstOrDefault();
             if (rolExiste != null)
             {
@@ -133,7 +135,7 @@ public class UserService : IUserService
                 if (userTieneRol == false)
                 {
                     user.Roles.Add(rolExiste);
-                    _unitOfWork.users.Update(user);
+                    _unitOfWork.Users.Update(user);
                     await _unitOfWork.SaveAsync();
                 }
                 return $"Rol {model.Role} agregado a la cuenta {model.UserName} de forma exitosa.";
@@ -150,7 +152,7 @@ public class UserService : IUserService
         user.UserName = model.UserName;
         user.Email = model.Email;
         user.Password = _passwordHasher.HashPassword(user, model.Password);
-        _unitOfWork.users.Update(user);
+        _unitOfWork.Users.Update(user);
         await _unitOfWork.SaveAsync();
         return user;
     }
@@ -181,7 +183,7 @@ public class UserService : IUserService
     
         var newRefreshToken = CreateRefreshToken();
         user.RefreshTokens.Add(newRefreshToken);
-        _unitOfWork.users.Update(user);
+        _unitOfWork.Users.Update(user);
         await _unitOfWork.SaveAsync();
     
         datosUserDto.Mensaje = "Ok";

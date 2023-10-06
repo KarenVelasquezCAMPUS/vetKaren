@@ -19,4 +19,7 @@ public interface IUserRol
     void Remove(UserRol entity);
     void RemoveRange(IEnumerable<UserRol> entities);
     void Update(UserRol entity);
+    void Add(global::ApiVetKaren.Dtos.UserRolDto userRol);
+    void Update(global::ApiVetKaren.Dtos.UserRolDto userRol);
+    void Update(global::ApiVetKaren.Dtos.UserRolDto userRol);
 }

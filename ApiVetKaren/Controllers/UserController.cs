@@ -1,4 +1,9 @@
+using ApiVetKaren.Dtos;
+using ApiVetKaren.Helpers;
+using ApiVetKaren.Services;
 using AutoMapper;
+using Core.Entities;
+using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiVetKaren.Controllers;
@@ -100,11 +105,11 @@ public class UserController : BaseApiController
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public ActionResult<UserGetAllDto> GetByUserName(string UserName)
     {
-        var UserXrol =  _unitOfWork.Users.Find(p => p.UserName == UserName).FirstOrDefault();
-        if (UserXrol == null) {
+        var UserRol =  _unitOfWork.Users.Find(p => p.UserName == UserName).FirstOrDefault();
+        if (UserRol == null) {
             return NotFound();
         }
-        return _mapper.Map<UserGetAllDto>(Userrol);
+        return _mapper.Map<UserGetAllDto>(UserRol);
     }
 
     // Paginacion
@@ -132,7 +137,7 @@ public class UserController : BaseApiController
         if (UserDto == null) {
             return NotFound();
         }
-        var User = _mapper.Map<User>(UserDto);
+        var User = _mapper.Map<UserDto>(UserDto);
         User.Id = id;
         var editUserRol = await _userService.EditUserAsync(User);
         return _mapper.Map<UserDto>(editUserRol);

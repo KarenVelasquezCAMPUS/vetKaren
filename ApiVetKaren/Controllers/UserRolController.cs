@@ -1,4 +1,7 @@
+using ApiVetKaren.Dtos;
+using ApiVetKaren.Helpers;
 using AutoMapper;
+using Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -60,7 +63,7 @@ public class UserRolController : BaseApiController
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<UserRolDto>> Post(UserRolDto UserRolDto)
     {
-        var UserRol = _mapper.Map<UserRol>(UserRolDto);
+        var UserRol = _mapper.Map<UserRolDto>(UserRolDto);
         _unitOfWork.UserRoles.Add(UserRol);
         await _unitOfWork.SaveAsync();
 
@@ -83,7 +86,7 @@ public class UserRolController : BaseApiController
             return NotFound();
         }
 
-        var UserRol = _mapper.Map<UserRol>(UserRolDto);
+        var UserRol = _mapper.Map<UserRolDto>(UserRolDto);
         UserRol.UserId = iduser;
         UserRol.RolId = idRol;
         _unitOfWork.UserRoles.Update(UserRol);
