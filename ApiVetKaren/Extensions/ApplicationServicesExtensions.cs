@@ -1,5 +1,7 @@
 using System.Text;
+using ApiVetKaren.Services;
 using AspNetCoreRateLimit;
+using Core.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

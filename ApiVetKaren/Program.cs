@@ -2,7 +2,6 @@ using System.Reflection;
 using ApiVetKaren.Extensions;
 using AspNetCoreRateLimit;
 using Infrastructure;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
