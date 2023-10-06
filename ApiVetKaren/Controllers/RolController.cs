@@ -9,7 +9,6 @@ namespace ApiVetKaren.Controllers;
 
 public class RolController : BaseApiController
 {
-    /* 
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
     public RolController(IUnitOfWork unitOfWork, IMapper mapper)
@@ -99,5 +98,4 @@ public class RolController : BaseApiController
         await _unitOfWork.SaveAsync();
         return NoContent();
     } 
-    */
 }

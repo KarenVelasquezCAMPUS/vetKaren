@@ -1,4 +1,6 @@
+using ApiVetKaren.Dtos;
 using AutoMapper;
+using Core.Entities;
 
 namespace ApiVetKaren.Profiles;
 public class MappingProfiles : Profile

@@ -3,16 +3,19 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using ApiVetKaren.Dtos;
+using Core.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 namespace ApiVetKaren.Services;
-public class UserService : IUserService
+public class UserService : IUserService 
 {
+
     private readonly IUnitOfWork _unitOfWork;
     private readonly JWT _jwt;
     private readonly IPasswordHasher<User> _passwordHasher;
+
     public UserService(IUnitOfWork unitOfWork, IOptions<JWT> jwt, IPasswordHasher<User> passwordHasher)
     {
         _jwt=jwt.Value;
@@ -57,7 +60,7 @@ public class UserService : IUserService
         {
             return $"El user con {registerDto.UserName} ya se encuentra registrado.";
         }
-    }
+    } 
 
     // Tener User
     public async Task<DatosUserDto> GetTokenAsync(LoginDto model)
@@ -239,10 +242,10 @@ public class UserService : IUserService
             signingCredentials: signingCredentials
         );
         return jwtSecurityToken;
-    }
+    
 
-    /*
-     public Task<string> RegisterAsync(RegisterDto model)
+    /*  
+    public Task<string> RegisterAsync(RegisterDto model)
     {
         throw new NotImplementedException();
     }
@@ -265,6 +268,8 @@ public class UserService : IUserService
     Task<DatosUserDto> IUserService.RefreshTokenAsync(string refreshToken)
     {
         throw new NotImplementedException();
-    } 
+    }  
     */
+
+    }
 }

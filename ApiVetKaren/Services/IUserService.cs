@@ -1,6 +1,5 @@
-
-
 using ApiVetKaren.Dtos;
+using Core.Entities;
 
 namespace ApiVetKaren.Services;
 public interface IUserService

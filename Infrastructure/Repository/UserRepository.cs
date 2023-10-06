@@ -3,10 +3,10 @@ using Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repository;
-public class UsuarioRepository : GenericRepository<User>, IUser
+public class UserRepository : GenericRepository<User>, IUser
 {
     private readonly ApiVetKarenContext _context;
-    public UsuarioRepository(ApiVetKarenContext context) : base(context)
+    public UserRepository(ApiVetKarenContext context) : base(context)
     {
         _context = context;
     }
@@ -23,7 +23,7 @@ public class UsuarioRepository : GenericRepository<User>, IUser
         return await _context.Users
             .Include(u => u.Roles)
             .Include(u => u.RefreshTokens)
-            .FirstOrDefaultAsync(u => u.Username.ToLower() == username.ToLower());
+            .FirstOrDefaultAsync(u => u.UserName.ToLower() == username.ToLower());
     }
 
     // Pag

@@ -9,7 +9,6 @@ namespace ApiVetKaren.Controllers;
 
 public class UserRolController : BaseApiController
 {
-    /* 
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
 
@@ -38,7 +37,6 @@ public class UserRolController : BaseApiController
 
     // User Rol
     [HttpGet("{idUser}/{idRol}")]
-    //[Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -56,7 +54,6 @@ public class UserRolController : BaseApiController
 
     // Rol ad searc
     [HttpPost]
-    //[Authorize(Roles = "Administrador")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -76,7 +73,6 @@ public class UserRolController : BaseApiController
 
     // Rol ad inser
     [HttpPut("{idUser}/{idRol}")]
-    //[Authorize(Roles = "Administrador")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -98,7 +94,6 @@ public class UserRolController : BaseApiController
 
     // Rol ad delet
     [HttpDelete("{iduser}/{idRol}")]
-    //[Authorize(Roles = "Administrador")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -116,5 +111,4 @@ public class UserRolController : BaseApiController
 
         return NoContent();
     }
-     */
 }

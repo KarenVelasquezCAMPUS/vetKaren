@@ -1,37 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using Core.Entities;
 using Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repository;
-public class UserRolRepository : IUserRol
+public class LabRepository : ILab
 {
     private readonly ApiVetKarenContext _context;
 
-    public UserRolRepository(ApiVetKarenContext context)
+    public LabRepository(ApiVetKarenContext context)
     {
         _context = context;
     }
 
-     public virtual void Add(UserRol entity)
+     public virtual void Add(Lab entity)
         {
-            _context.Set<UserRol>().Add(entity);
+            _context.Set<Lab>().Add(entity);
         }
     
-        public virtual void AddRange(IEnumerable<UserRol> entities)
+        public virtual void AddRange(IEnumerable<Lab> entities)
         {
-            _context.Set<UserRol>().AddRange(entities);
+            _context.Set<Lab>().AddRange(entities);
         }
     
-        public virtual IEnumerable<UserRol> Find(Expression<Func<UserRol, bool>> expression)
+        public virtual IEnumerable<Lab> Find(Expression<Func<Lab, bool>> expression)
         {
-            return _context.Set<UserRol>().Where(expression);
+            return _context.Set<Lab>().Where(expression);
         }
     
         // Pag
-         public virtual async Task<(int totalRegistros, IEnumerable<UserRol> registros)> GetAllAsync(int pageIndex, int pageSize, string search)
+         public virtual async Task<(int totalRegistros, IEnumerable<Lab> registros)> GetAllAsync(int pageIndex, int pageSize, string search)
         {
-            var query = _context.UserRols as IQueryable<UserRol>;
+            var query = _context.Labs as IQueryable<Lab>;
             var totalRegistros = await query.CountAsync();
             var registros = await query
                 .Skip((pageIndex - 1) * pageSize)
@@ -39,13 +43,6 @@ public class UserRolRepository : IUserRol
                 .ToListAsync();
             return (totalRegistros, registros);
         }
-
-        public virtual async Task<UserRol> GetByIdAsync(int idUsuario, int idRol)
-        {
-            return await _context.Set<UserRol>()
-                                .FirstOrDefaultAsync(p => p.RolId == idRol &&  p.UserId == idUsuario);
-        }
-    
         public virtual Task<UserRol> GetByIdAsync(string id)
         {
             throw new NotImplementedException();

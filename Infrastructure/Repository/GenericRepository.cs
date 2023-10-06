@@ -5,15 +5,16 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Core.Entities;
 using Core.Interfaces;
+using Core.Interfaces.Generic;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repository;
-public class GenericRepository<T> : IGeneric<T> where T : BaseEntity
+public class GenericRepository<T> : IGenericRespository<T> where T : BaseEntity
 {
-    private readonly Skeleton3CapasContext _context;
+    private readonly ApiVetKarenContext _context;
 
-    public GenericRepository(Skeleton3CapasContext context)
+    public GenericRepository(ApiVetKarenContext context)
     {
         _context = context;
     }

@@ -17,12 +17,14 @@ public class ApiVetKarenContext : DbContext
     public DbSet<MovementType> MovementTypes { get; set; }
     public DbSet<Owner> Owners { get; set; }
     public DbSet<Pet> Pets { get; set; }
-    public DbSet<Quotes> Quotes { get; set; }
+    public DbSet<Quotes> Quotess { get; set; }
+    public DbSet<Race> Races { get; set; }
     public DbSet<RefreshToken> RefreshTokens { get; set; }
     public DbSet<Rol> Roles { get; set; }
     public DbSet<Spice> Spices { get; set; }
     public DbSet<Supplier> Suppliers { get; set; }
     public DbSet<User> Users { get; set; }
+    public DbSet<UserRol> UserRols { get; set; }
     public DbSet<Vet> Vets { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

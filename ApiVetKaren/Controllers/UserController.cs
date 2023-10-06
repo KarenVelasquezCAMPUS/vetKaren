@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace ApiVetKaren.Controllers;
 public class UserController : BaseApiController
 {
-    /* 
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
     private readonly IUserService _userService;
@@ -155,5 +154,4 @@ public class UserController : BaseApiController
         await _unitOfWork.SaveAsync();
         return NoContent();
     } 
-    */
 }

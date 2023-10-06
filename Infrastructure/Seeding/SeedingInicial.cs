@@ -11,38 +11,38 @@ namespace Infrastructure.Seeding;
             var AdministradorRol = new Rol()
             {
                 Id = 1,
-                Nombre = "Administrador"
+                Name = "Administrador"
             };
             var GerenteRol = new Rol()
             {
                 Id = 2,
-                Nombre = "Gerente"
+                Name = "Gerente"
             };
             var EmpleadoRol = new Rol()
             {
                 Id = 3,
-                Nombre = "Empleado"
+                Name = "Empleado"
             };
             var PersonaRol = new Rol()
             {
                 Id = 4,
-                Nombre = "Persona"
+                Name = "Persona"
             };
-            var Administrador = new Usuario()
+            var Administrador = new User()
             {
                 Id=1,
-                Username="Admin",
+                UserName="Admin",
                 Email="admin@gmail.com",
             };
-            var _passwordHasher = new PasswordHasher<Usuario>();
+            var _passwordHasher = new PasswordHasher<User>();
             Administrador.Password = _passwordHasher.HashPassword(Administrador, "123456");
-            var AdminUsuarioRol = new UsuarioRol()
+            var AdminUsuarioRol = new UserRol()
             {
                 RolId = 1,
-                UsuarioId = 1
+                UserId = 1
             };
-            modelBuilder.Entity<Usuario>().HasData(Administrador);
+            modelBuilder.Entity<User>().HasData(Administrador);
             modelBuilder.Entity<Rol>().HasData(AdministradorRol, EmpleadoRol, PersonaRol, GerenteRol);
-            modelBuilder.Entity<UsuarioRol>().HasData(AdminUsuarioRol);
+            modelBuilder.Entity<UserRol>().HasData(AdminUsuarioRol);
         }
     }
