@@ -24,6 +24,13 @@ public static class ApplicationServiceExtension
                     .AllowAnyHeader()
             );
         });
+    
+    public static void AddAplicacionServices(this IServiceCollection services)
+    {
+        services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+        services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+    }
 
     // Rate Limit    
     public static void ConfigureRateLimiting(this IServiceCollection services)

@@ -12,5 +12,5 @@ public interface IUserService
     Task<string> AddRolAsync(AddRolDto model);
     Task<User> EditUserAsync(User model);
     Task<DatosUserDto> RefreshTokenAsync(string refreshToken);
-    Task EditUserAsync(UserDto user);
+    Task<User> EditUserAsync(UserDto user);
 }

@@ -274,4 +274,9 @@ public class UserService : IUserService
     */
 
     }
+
+    public Task<User> EditUserAsync(UserDto user)
+    {
+        throw new NotImplementedException();
+    }
 }
