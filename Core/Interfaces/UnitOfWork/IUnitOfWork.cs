@@ -12,6 +12,7 @@ public interface IUnitOfWork
     IPet Pets { get; }
     IQuotes Quotess { get; }
     IRace Races { get; }
+    IRefreshToken RefreshTokens { get; }
     IRol Roles { get; }
     ISpice Spices { get; }
     ISupplier Suppliers { get; }

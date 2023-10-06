@@ -9,4 +9,6 @@ public class Pet : BaseEntity
     public Race Race { get; set; }
     public string Name { get; set; }
     public DateTime BornDate { get; set; }
+
+    public ICollection<Quotes> Quotess { get; set; }
 }

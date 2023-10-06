@@ -6,4 +6,10 @@ public class Medicine : BaseEntity
     public string Name { get; set; }
     public int QuantityAvailable { get; set; }
     public string Price { get; set;}
+
+    public ICollection<Supplier> Suppliers { get; set; } = new HashSet<Supplier>();
+    public ICollection<MedicineSupplier> MedicineSuppliers { get; set; }
+    public ICollection<MedicalTreatments> MedicalTreatmentss { get; set; }
+    public ICollection<MovementMedicine> MovementMedicines { get; set; }
+    public ICollection<MovementDetail> MovementDetails { get; set; }
 }

@@ -25,28 +25,32 @@ namespace Infrastructure.Data.Configuracion;
             .HasMaxLength(100);
 
             builder
-            .HasMany(p=>p.Roles)
-            .WithMany(p=>p.Users)
+            .HasMany(h => h.Roles)
+            .WithMany(m => m.Users)
             .UsingEntity<UserRol>
             (
                 j=>j
-                .HasOne(p=>p.Rol)
-                .WithMany(p=>p.UserRoles)
-                .HasForeignKey(p=>p.RolId),
+                .HasOne(o => o.Rol)
+                .WithMany(m => m.UserRoles)
+                .HasForeignKey(o => o.RolId),
 
                 j=>j
-                .HasOne(p=>p.User)
-                .WithMany(p=>p.UserRoles)
-                .HasForeignKey(p=>p.UserId),
+                .HasOne(o => o.User)
+                .WithMany(m => m.UserRoles)
+                .HasForeignKey(o => o.UserId),
 
                 j=>
                 {
-                    j.ToTable("UsuarioRol");
-                    j.HasKey(p=> new{p.UserId, p.RolId});
+                    j.ToTable("userrol");
+                    j.HasKey(k => new
+                    {
+                        k.UserId, 
+                        k.RolId
+                    });
                 });
                 
-                builder.HasMany(p=>p.RefreshTokens)
-                .WithOne(p=>p.User)
-                .HasForeignKey(p=>p.UserId);
+                builder.HasMany(p => p.RefreshTokens)
+                .WithOne(p => p.User)
+                .HasForeignKey(p => p.UserId);
         }
     }

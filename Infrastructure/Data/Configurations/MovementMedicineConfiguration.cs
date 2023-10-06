@@ -1,18 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Data.Configurations
 {
-    public class MovementDetailConfiguration : IEntityTypeConfiguration<MovementDetail>
+    public class MovementMedicineConfiguration : IEntityTypeConfiguration<MovementMedicine>
     {
-        public void Configure(EntityTypeBuilder<MovementDetail> builder)
+        public void Configure(EntityTypeBuilder<MovementMedicine> builder)
         {
-            builder.ToTable("movementdetail");
+            builder.ToTable("movementmedicine");
 
             builder.HasKey(p => p.Id);
 
@@ -25,19 +21,19 @@ namespace Infrastructure.Data.Configurations
             .IsRequired()
             .HasColumnName("amount");
 
-            builder.Property(p => p.Price)
+            builder.Property(p => p.Date)
             .IsRequired()
-            .HasMaxLength(20)
-            .HasColumnName("price");
+            .HasColumnType("DateTime")
+            .HasColumnName("date");
 
             //Relations
             builder.HasOne(o => o.Medicine)
-            .WithMany(m => m.MovementDetails)
+            .WithMany(m => m.MovementMedicines)
             .HasForeignKey(o => o.MedicineId);
 
-            builder.HasOne(o => o.MovementMedicine)
-            .WithMany(m => m.MovementDetails)
-            .HasForeignKey(o => o.MovementMedicineId);
+            builder.HasOne(o => o.MovementType)
+            .WithMany(m => m.MedicineMovements)
+            .HasForeignKey(o => o.MovementTypeId);
         }
     }
 }

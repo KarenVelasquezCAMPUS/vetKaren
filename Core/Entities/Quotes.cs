@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-
 namespace Core.Entities;
 public class Quotes : BaseEntity
 {
@@ -14,4 +8,6 @@ public class Quotes : BaseEntity
     public DateTime Date { get; set; }
     public string Hour { get; set; }
     public string Reason { get; set; }
+
+    public ICollection<MedicalTreatments> MedicalTreatmentss { get; set; }
 }
